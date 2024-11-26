@@ -27,16 +27,11 @@ export default function EditUser() {
             age: data.get("age"),
             salary: data.get("salary")
         }
-
-        console.log(userData)
         if (id) {
             axios.put(`http://localhost:3000/users/${id}/api`, userData)
                 .then(res => {
                     setUser(res.data.user )
-                })
-                .catch(err => {
-                    console.log("Error:", err);
-                console.log("Response error:", err.response?.data);
+                    redirect("/users")
                 })
         }
     }

@@ -28,5 +28,11 @@ export const deleteUserById = async (id: number) => {
 export const updateUserById = async (user: InputUser, id:number) => {
     const stm = `UPDATE users SET name = @name, surname = @surname, age = @age, 
     salary = @salary WHERE id = @id`
-    return sql.prepare(stm).run(user)
+    return sql.prepare(stm).run({
+        name: user.name,
+        surname: user.surname,
+        age: user.age,
+        salary: user.salary,
+        id: id
+    })
 }
